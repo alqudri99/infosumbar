@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView android:layout_margin="5dp"
+    app:cardCornerRadius="5dp"
+    android:elevation="5dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:scrollbars="none"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:gravity="center">
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_baseline_contact_support_24"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Terms &amp; Conditions"
+                android:fontFamily="@font/segoeui_bold"
+                android:textColor="#3A3939"
+                android:textSize="30dp"
+                />
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="#fff"
+                    android:textAlignment="center"
+                    android:background="@drawable/bg_text_umum"
+                    android:fontFamily="@font/segoeui_semibold"
+                    android:textSize="15dp"
+                    android:text="Umum"
+                    />
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/segoeui"
+                    android:text="Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book."
+                    />
+
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="#fff"
+                    android:textAlignment="center"
+                    android:background="@drawable/bg_text_twitter"
+                    android:fontFamily="@font/segoeui_semibold"
+                    android:textSize="15dp"
+                    android:text="Twitter"
+                    />
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/segoeui"
+                    android:text="Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book."
+                    />
+
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="85dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="#fff"
+                    android:textAlignment="center"
+                    android:background="@drawable/bg_text_ig"
+                    android:fontFamily="@font/segoeui_semibold"
+                    android:textSize="15dp"
+                    android:text="Instagram"
+                    />
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/segoeui"
+                    android:text="Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book."
+                    />
+
+
+            </LinearLayout>
+            <Button
+                android:id="@+id/selesai"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_text_umum"
+                android:textColor="#fff"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Selesai"
+                />
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.cardview.widget.CardView>

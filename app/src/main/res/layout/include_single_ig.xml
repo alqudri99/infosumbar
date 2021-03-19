@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical"
+    android:layout_marginBottom="10dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="350dp"
+        app:cardElevation="5dp"
+        android:padding="5dp"
+        app:cardCornerRadius="5dp"
+        android:layout_margin="15dp"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/jadwal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:fontFamily="@font/segoeui_bold"
+                android:text="Jam 09:00"
+                android:layout_marginTop="10dp"
+                android:textColor="#252525"
+                android:textSize="30dp" />
+            <TextView
+                android:id="@+id/jenis_pengguna"
+                android:layout_marginTop="-15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:fontFamily="@font/segoeui_semibold"
+                android:text="Umum"
+                android:textColor="#252525"
+                android:textSize="15dp" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/segoeui_semibold"
+                    android:text="Feed Post"
+                    />
+                <EditText
+                    android:id="@+id/edt_feed"
+                    android:padding="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:hint="Feed Post"
+                    android:background="@drawable/bg_edt" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/segoeui_semibold"
+                    android:text="Stories"
+                    />
+                <EditText
+                    android:id="@+id/edt_stories"
+                    android:padding="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:hint="Stories"
+                    android:background="@drawable/bg_edt" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/segoeui_semibold"
+                    android:text="IGTV"
+                    />
+                <EditText
+                    android:id="@+id/edt_igtv"
+                    android:padding="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:hint="IGTV"
+                    android:background="@drawable/bg_edt" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/jenis_pengguna_umkm"
+                android:layout_marginTop="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:fontFamily="@font/segoeui_semibold"
+                android:text="UMKM"
+                android:textColor="#252525"
+                android:textSize="15dp" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/segoeui_semibold"
+                    android:text="Feed Post"
+                    />
+                <EditText
+                    android:id="@+id/edt_feed_umkm"
+                    android:padding="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:hint="Feed Post"
+                    android:background="@drawable/bg_edt" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/segoeui_semibold"
+                    android:text="Stories"
+                    />
+                <EditText
+                    android:id="@+id/edt_stories_umkm"
+                    android:padding="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:hint="Stories"
+                    android:background="@drawable/bg_edt" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/segoeui_semibold"
+                    android:text="IGTV"
+                    />
+                <EditText
+                    android:id="@+id/edt_igtv_umkm"
+                    android:padding="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:hint="IGTV"
+                    android:background="@drawable/bg_edt" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

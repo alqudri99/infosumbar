@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView android:layout_margin="10dp"
+    app:cardCornerRadius="5dp"
+    android:elevation="5dp"
+    android:layout_gravity="center"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="320dp"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:gravity="center"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Paket 1"
+            android:textSize="20dp"
+            android:fontFamily="@font/segoeui_bold"
+            />
+
+        <TextView
+            android:id="@+id/error"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pekerjaan Wajib Di Isi!!!"
+            android:textColor="#D50000"
+            />
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Post Feed"
+                android:fontFamily="@font/segoeui_semibold"
+                />
+            <TextView
+                android:id="@+id/feed"
+                android:gravity="right"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="12x Post"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Instagram Story"
+                android:fontFamily="@font/segoeui_semibold"
+                />
+            <TextView
+                android:id="@+id/story"
+                android:gravity="right"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="3x Post"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Website"
+                android:fontFamily="@font/segoeui_semibold"
+                />
+            <TextView
+                android:id="@+id/website"
+                android:gravity="right"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="1x Post"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Harga Paket"
+                android:fontFamily="@font/segoeui_semibold"
+                />
+            <TextView
+                android:id="@+id/total"
+                android:gravity="right"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Rp 5.500.000"
+                />
+        </LinearLayout>
+
+
+        <EditText
+            android:id="@+id/edt_jobs"
+            android:hint="Pekerjaan Anda"
+            android:layout_width="match_parent"
+            android:padding="5dp"
+            android:layout_marginTop="20dp"
+            android:layout_height="35dp"
+            android:background="@drawable/bg_edt"
+            />
+
+        <Button
+            android:id="@+id/checkout"
+            android:layout_marginTop="20dp"
+            android:layout_width="130dp"
+            android:layout_height="30dp"
+            android:text="Checkout"
+            android:textColor="#ffff"
+            android:fontFamily="@font/segoeui"
+            android:background="@drawable/bg_button_tanggal2"
+            />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

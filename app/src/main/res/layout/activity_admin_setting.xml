@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.admin.AdminSetting">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:cardCornerRadius="0dp"
+        app:cardElevation="3dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="10dp"
+            android:padding="5dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/logo" />
+    </androidx.cardview.widget.CardView>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:fontFamily="@font/segoeui_bold"
+                android:text="Rekening"
+                android:textColor="#252525"
+                android:textSize="30dp" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/segoeui_semibold"
+                    android:text="Atas Nama"
+                    />
+                <EditText
+                    android:id="@+id/namarek"
+                    android:padding="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:hint="Atas Nama"
+                    android:background="@drawable/bg_edt" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/segoeui_semibold"
+                    android:text="Nomor Rekening"
+                    />
+                <EditText
+                    android:id="@+id/norek"
+                    android:padding="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:hint="Nomor Rekening"
+                    android:background="@drawable/bg_edt" />
+            </LinearLayout>
+
+            <HorizontalScrollView
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <include
+                        android:id="@+id/jam1"
+                        layout="@layout/include_single_ig" />
+
+                    <include
+                        android:id="@+id/jam2"
+                        layout="@layout/include_single_ig"/>
+
+                    <include
+                        android:id="@+id/jam3"
+                        layout="@layout/include_single_ig"/>
+                    <include
+                        android:id="@+id/jam4"
+                        layout="@layout/include_single_ig"/>
+                    <include
+                        android:id="@+id/jam5"
+                        layout="@layout/include_single_ig"/>
+                </LinearLayout>
+            </HorizontalScrollView>
+            <include
+                android:id="@+id/harga_umkm"
+                layout="@layout/include_harga"/>
+
+            <include
+                android:id="@+id/harga_umum"
+                layout="@layout/include_harga"/>
+
+            <include
+                android:id="@+id/paket_umkm"
+                layout="@layout/include_paket"/>
+            <include
+                android:id="@+id/paket_umum"
+                layout="@layout/include_paket"/>
+            <Button
+                android:id="@+id/simpan"
+                android:text="Simpan"
+                android:textColor="#ffff"
+                android:textSize="15dp"
+                android:layout_gravity="center"
+                android:layout_width="150dp"
+                android:layout_marginLeft="5dp"
+                android:background= "@drawable/bg_button_tanggal22"
+                android:layout_height="40dp"
+                />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
