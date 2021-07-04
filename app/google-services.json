@@ -1,71 +1,41 @@
 {
   "project_info": {
-    "project_number": "487965981658",
-    "firebase_url": "https://mesjidku-88edf.firebaseio.com",
-    "project_id": "mesjidku-88edf",
-    "storage_bucket": "mesjidku-88edf.appspot.com"
+    "project_number": "1007695446736",
+    "project_id": "info-sumbar",
+    "storage_bucket": "info-sumbar.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:487965981658:android:19bfc93d43f2c88d541ee3",
+        "mobilesdk_app_id": "1:1007695446736:android:89f97ac6e5c3949ddc14d5",
         "android_client_info": {
-          "package_name": "com.alqudri.infosumbar"
+          "package_name": "com.daniel.infosumbar"
         }
       },
       "oauth_client": [
         {
-          "client_id": "487965981658-ghq251auk1hp221at7noed1dm26irjpj.apps.googleusercontent.com",
+          "client_id": "1007695446736-j9i0hgovsc7rr09vo5aqhsg2a3u16556.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.alqudri.infosumbar",
+            "package_name": "com.daniel.infosumbar",
             "certificate_hash": "76e916ab37a5d67552c272a4b722b787d452343b"
           }
         },
         {
-          "client_id": "487965981658-qao9prov1m214scr9nuqhhltmjakcmqf.apps.googleusercontent.com",
+          "client_id": "1007695446736-tcdda5kbl8a7j0arc8scit1hlkf87j52.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCRZjDtd4J8-v4V4bQJHELbjP05Stu_OHg"
+          "current_key": "AIzaSyBf2ZRROo1FNrT2NX4j0qWLsnYQ3FDzWMc"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "487965981658-lp4vk7pbpd83vt8pc3oungpkn99oat6r.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:487965981658:android:6656dd2a12709682541ee3",
-        "android_client_info": {
-          "package_name": "com.alqudri.mesjidku"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "487965981658-qao9prov1m214scr9nuqhhltmjakcmqf.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCRZjDtd4J8-v4V4bQJHELbjP05Stu_OHg"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "487965981658-lp4vk7pbpd83vt8pc3oungpkn99oat6r.apps.googleusercontent.com",
+              "client_id": "1007695446736-tcdda5kbl8a7j0arc8scit1hlkf87j52.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

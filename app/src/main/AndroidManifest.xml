@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.alqudri.infosumbar">
+    package="com.daniel.infosumbar">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -13,24 +13,24 @@
         android:roundIcon="@drawable/info"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PdfViewerActivity"></activity>
-        <activity android:name=".PdfActivity" />
-        <activity android:name=".ui.admin.AdminSetting" />
-        <activity android:name=".ui.admin.BookingInfoActivity" />
-        <activity android:name=".ui.admin.BookingAdmin" />
-        <activity android:name=".ui.admin.AdminHome" />
-        <activity android:name=".ui.DetailCheckout" />
-        <activity android:name=".ui.DetailPaketBooking" />
-        <activity android:name=".ui.HistoryActivity" />
-        <activity android:name=".ui.PaketActivity" />
-        <activity android:name=".ui.ProfileActivity" />
-        <activity android:name=".ui.LoginActivity" />
-        <activity android:name=".ui.PilihanActivity" />
-        <activity android:name=".ui.BiodataActivity" />
-        <activity android:name=".ui.HomaActivity" />
-        <activity android:name=".ui.DetailBooking" />
-        <activity android:name=".ui.BookingActivity" />
-        <activity android:name=".ui.MainActivity">
+        <activity android:name="com.daniel.infosumbar.PdfViewerActivity"></activity>
+        <activity android:name="com.daniel.infosumbar.PdfActivity" />
+        <activity android:name="com.daniel.infosumbar.ui.admin.AdminSetting" />
+        <activity android:name="com.daniel.infosumbar.ui.admin.BookingInfoActivity" />
+        <activity android:name="com.daniel.infosumbar.ui.admin.BookingAdmin" />
+        <activity android:name="com.daniel.infosumbar.ui.admin.AdminHome" />
+        <activity android:name="com.daniel.infosumbar.ui.DetailCheckout" />
+        <activity android:name="com.daniel.infosumbar.ui.DetailPaketBooking" />
+        <activity android:name="com.daniel.infosumbar.ui.HistoryActivity" />
+        <activity android:name="com.daniel.infosumbar.ui.PaketActivity" />
+        <activity android:name="com.daniel.infosumbar.ui.ProfileActivity" />
+        <activity android:name="com.daniel.infosumbar.ui.LoginActivity" />
+        <activity android:name="com.daniel.infosumbar.ui.PilihanActivity" />
+        <activity android:name="com.daniel.infosumbar.ui.BiodataActivity" />
+        <activity android:name="com.daniel.infosumbar.ui.HomaActivity" />
+        <activity android:name="com.daniel.infosumbar.ui.DetailBooking" />
+        <activity android:name="com.daniel.infosumbar.ui.BookingActivity" />
+        <activity android:name="com.daniel.infosumbar.ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

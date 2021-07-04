@@ -105,6 +105,19 @@
                     android:layout_height="50dp"
                     android:hint="IGTV"
                     android:background="@drawable/bg_edt" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/segoeui_semibold"
+                    android:text="Highlight"
+                    />
+                <EditText
+                    android:id="@+id/edt_highlight"
+                    android:padding="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:hint="IGTV"
+                    android:background="@drawable/bg_edt" />
             </LinearLayout>
 
             <TextView

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView android:layout_margin="10dp"
+    app:cardCornerRadius="5dp"
+    android:elevation="5dp"
+    android:layout_gravity="center"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="320dp"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ImageView
+        android:id="@+id/close"
+        android:layout_margin="10dp"
+        android:layout_gravity="right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_close_24"
+        />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="20dp"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_margin="10dp"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/logo"
+                />
+
+            <TextView
+                android:id="@+id/title"
+                android:textColor="#323131"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Daftar"
+                android:textSize="20dp"
+                android:fontFamily="@font/segoeui_bold"
+                />
+
+            <TextView
+                android:id="@+id/keterangan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/segoeui"
+                android:textSize="12dp"
+                android:textAlignment="center"
+                android:text="Apakah betul ini gaji kamu per bulan? :"
+                />
+            <TextView
+                android:id="@+id/tv_gaji"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rp 2.000.000"
+                android:textColor="#252424"
+                />
+
+            <TextView
+                android:id="@+id/tidak"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tidak"
+                android:textSize="12dp"
+                android:textColor="#DD2C00"
+                android:fontFamily="@font/segoeui_bold"
+                />
+
+            <EditText
+                android:id="@+id/edt_namaa"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:padding="5dp"
+                android:hint="Nama"
+                android:background="@drawable/bg_edt"
+                />
+
+            <EditText
+                android:id="@+id/edt_email"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:padding="5dp"
+                android:hint="Email"
+                android:background="@drawable/bg_edt"
+                />
+
+            <EditText
+                android:id="@+id/edt_no_hp"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:padding="5dp"
+                android:hint="No HP"
+                android:background="@drawable/bg_edt"
+                />
+
+            <EditText
+                android:id="@+id/edt_pekerjaan"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:padding="5dp"
+                android:hint="Pekerjaan"
+                android:background="@drawable/bg_edt"
+                />
+
+            <EditText
+                android:id="@+id/edt_password"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:inputType="textPassword"
+                android:padding="5dp"
+                android:hint="Password"
+                android:background="@drawable/bg_edt"
+                />
+
+
+            <EditText
+                android:id="@+id/edt_gaji"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:inputType="number"
+                android:padding="5dp"
+                android:hint="Gaji/Blan"
+                android:background="@drawable/bg_edt"
+                />
+
+            <TextView
+                android:id="@+id/btn_sign_in"
+                android:textSize="10dp"
+                android:layout_marginVertical="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Login"
+                android:fontFamily="@font/segoeui_semibold"
+                android:textColor="#BC1919"
+                />
+
+
+            <Button
+                android:id="@+id/konfirmasi"
+                android:layout_marginTop="20dp"
+                android:layout_width="130dp"
+                android:layout_height="30dp"
+                android:text="Daftar"
+                android:textColor="#ffff"
+                android:fontFamily="@font/segoeui"
+                android:background="@drawable/br_bt_login"
+                />
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.cardview.widget.CardView>

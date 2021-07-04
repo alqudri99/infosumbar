@@ -23,6 +23,16 @@
             android:scaleType="centerCrop"
             android:src="@drawable/logo" />
     </androidx.cardview.widget.CardView>
+    <TextView
+        android:id="@+id/status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#FF6D00"
+        android:text="UMKM"
+        android:fontFamily="@font/rubik_bold"
+        android:layout_marginVertical="5dp"
+        android:layout_marginHorizontal="10dp"
+        />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_booking"
         android:layout_width="match_parent"

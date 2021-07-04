@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView android:layout_margin="10dp"
+    app:cardCornerRadius="5dp"
+    android:elevation="5dp"
+    android:layout_gravity="center"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="320dp"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Harga Paket"
+                android:fontFamily="@font/segoeui_semibold"
+                />
+            <TextView
+                android:id="@+id/total"
+                android:gravity="right"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Rp 5.500.000"
+                />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/checkout"
+            android:layout_marginTop="20dp"
+            android:layout_width="130dp"
+            android:layout_height="30dp"
+            android:text="Checkout"
+            android:textColor="#ffff"
+            android:fontFamily="@font/segoeui"
+            android:background="@drawable/bg_button_tanggal2"
+            />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
