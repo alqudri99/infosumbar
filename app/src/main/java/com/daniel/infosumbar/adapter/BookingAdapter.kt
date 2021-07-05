@@ -1,5 +1,6 @@
 package com.daniel.infosumbar.adapter
 
+import android.app.Activity
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
@@ -31,7 +32,7 @@ import java.util.*
 import java.util.concurrent.ThreadLocalRandom
 
 
-class BookingAdapter(var list: List<BookingModel>, var doc: DocumentSnapshot, var jam: String, var pilihan: String, var con: DetailBooking) :
+class BookingAdapter(var list: List<BookingModel>, var doc: DocumentSnapshot, var jam: String, var pilihan: String, var con: Context) :
     RecyclerView.Adapter<BookingAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -196,7 +197,7 @@ class BookingAdapter(var list: List<BookingModel>, var doc: DocumentSnapshot, va
                             intent.putExtra("cek", "${p0.result?.id}")
                             Log.d("testIntent", "${p0.result?.id}")
                             context.startActivity(intent)
-                            con.finish()
+                            (context as Activity).finish()
                         }
 
                     })

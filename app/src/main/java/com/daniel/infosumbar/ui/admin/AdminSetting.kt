@@ -75,7 +75,7 @@ class AdminSetting : AppCompatActivity() {
                 val jam = arrayListOf<String>("9:00", "13:00", "16:00", "19:00", "22:00")
                 val prefix = arrayListOf<String>("jam9", "jam13", "jam16", "jam19", "jam22")
                 val layout = arrayListOf<LinearLayout>(jam1, jam2, jam3, jam4, jam5)
-                layout.layoutBindUmum(value, prefix, "Umum", jam)
+                layout.layoutBindUmum(value, prefix, "Corporate", jam)
             }
 
         simpan.setOnClickListener {

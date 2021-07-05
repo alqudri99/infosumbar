@@ -46,28 +46,13 @@ class AdminHome : AppCompatActivity(),
             .build()
 
         logoutBtn.setOnClickListener {
-            FirebaseAuth.getInstance().signOut()
-            Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(
-                object : ResultCallback<Status?> {
-                    override fun onResult(status: Status) {
-                        if (status.isSuccess()) {
                             val appPreferences = AppPreferences(this@AdminHome)
                             appPreferences.uid = null
                             startActivity(Intent(this@AdminHome, LoginActivity::class.java))
                             finish()
-                        } else {
-                            Toast.makeText(
-                                applicationContext,
-                                "Session not close",
-                                Toast.LENGTH_LONG
-                            ).show()
-                        }
-                    }
-                })
         }
     }
 
     override fun onConnectionFailed(p0: ConnectionResult) {
-        TODO("Not yet implemented")
     }
 }

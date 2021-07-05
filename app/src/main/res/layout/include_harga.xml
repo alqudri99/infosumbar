@@ -38,7 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/segoeui_semibold"
-            android:text="Twitter"
+            android:text="Twitter -Tweet"
             />
         <EditText
             android:id="@+id/edt_twitter_tweet"
@@ -63,7 +63,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/segoeui_semibold"
-            android:text="Twitter"
+            android:text="Twitter -Fleet"
             />
         <EditText
             android:id="@+id/edt_twitter_fleet"

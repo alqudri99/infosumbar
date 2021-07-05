@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:fontFamily="@font/segoeui_semibold"
-                android:text="Umum"
+                android:text="Corporate"
                 android:textColor="#252525"
                 android:textSize="15dp" />
 
@@ -116,7 +116,7 @@
                     android:padding="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:hint="IGTV"
+                    android:hint="Highlight"
                     android:background="@drawable/bg_edt" />
             </LinearLayout>
 
@@ -197,6 +197,21 @@
                     android:hint="IGTV"
                     android:background="@drawable/bg_edt" />
             </LinearLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/segoeui_semibold"
+                android:text="Highlight"
+                />
+            <EditText
+                android:id="@+id/edt_highlight_umkm"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="IGTV"
+                android:background="@drawable/bg_edt" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

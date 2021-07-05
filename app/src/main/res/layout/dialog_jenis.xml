@@ -18,6 +18,16 @@
             android:layout_height="70dp"
             android:src="@drawable/logo"
             />
+        <TextView
+            android:id="@+id/status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FF6D00"
+            android:text="UMKM"
+            android:fontFamily="@font/rubik_bold"
+            android:layout_marginVertical="5dp"
+            android:layout_marginHorizontal="10dp"
+            />
         <Button
             android:id="@+id/umkm"
             android:layout_marginTop="20dp"

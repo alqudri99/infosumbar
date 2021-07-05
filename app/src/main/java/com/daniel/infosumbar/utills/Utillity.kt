@@ -84,7 +84,7 @@ fun List<LinearLayout>.layoutBind(
         layBind.jadwal.text = jam[i]
         layBind.edt_igtv_umkm.setText("${value["${data[i]}.igtv"]}")
         layBind.edt_feed_umkm.setText("${value["${data[i]}.feed"]}")
-        layBind.edt_stories_umkm.setText("${value["stories"]}")
+        layBind.edt_stories_umkm.setText("${value["${data[i]}.stories"]}")
         i++
     }
 }
@@ -101,7 +101,7 @@ fun List<LinearLayout>.layoutBindUmum(
         layBind.jadwal.text = jam[i]
         layBind.edt_igtv.setText("${value["${data[i]}.igtv"]}")
         layBind.edt_feed.setText("${value["${data[i]}.feed"]}")
-        layBind.edt_stories.setText("${value["stories"]}")
+        layBind.edt_stories.setText("${value["${data[i]}.stories"]}")
         i++
     }
 }
@@ -126,6 +126,7 @@ fun List<LinearLayout>.saveData(
     for (lay: LinearLayout in this) {
         jadwal[i].put("feed", lay.edt_feed_umkm.text.toString())
         jadwal[i].put("igtv", lay.edt_igtv_umkm.text.toString())
+        jadwal[i].put("stories", lay.edt_stories_umkm.text.toString())
         i++
     }
 
@@ -137,7 +138,6 @@ fun List<LinearLayout>.saveData(
 
     val data =
         HargaModel(
-            this[0].edt_stories_umkm.makeString(),
             paketUmkm.edt_paket1.makeString(),
             paketUmkm.edt_paket2.makeString(),
             paketUmkm.edt_paket3.makeString(),
@@ -171,6 +171,7 @@ fun List<LinearLayout>.saveDataUmum(
     for (lay: LinearLayout in this) {
         jadwal[i].put("feed", lay.edt_feed.text.toString())
         jadwal[i].put("igtv", lay.edt_igtv.text.toString())
+        jadwal[i].put("stories", lay.edt_stories.text.toString())
         i++
     }
 
@@ -181,7 +182,6 @@ fun List<LinearLayout>.saveDataUmum(
     twitter.put("fleet", hargaUmkm.edt_twitter_fleet.makeString())
     val data =
         HargaModel(
-            this[0].edt_stories.makeString(),
             paketUmkm.edt_paket1.makeString(),
             paketUmkm.edt_paket2.makeString(),
             paketUmkm.edt_paket3.makeString(),

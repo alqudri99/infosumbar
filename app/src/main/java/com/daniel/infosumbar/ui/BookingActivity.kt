@@ -12,7 +12,10 @@ import android.view.Window
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.daniel.infosumbar.R
+import com.daniel.infosumbar.`interface`.DisableRecylerView
+import com.daniel.infosumbar.adapter.BookingAdapter
 import com.daniel.infosumbar.helper.AppPreferences
 import com.daniel.infosumbar.model.*
 import com.daniel.infosumbar.utills.*
@@ -24,6 +27,8 @@ import com.tsongkha.spinnerdatepicker.DatePicker
 import com.tsongkha.spinnerdatepicker.DatePickerDialog
 import com.tsongkha.spinnerdatepicker.SpinnerDatePickerDialogBuilder
 import kotlinx.android.synthetic.main.activity_booking.*
+import kotlinx.android.synthetic.main.activity_booking.rv_booking
+import kotlinx.android.synthetic.main.activity_detail_booking.*
 import kotlinx.android.synthetic.main.dialog_detail_paket.*
 import kotlinx.android.synthetic.main.dialog_jenis.*
 import kotlinx.android.synthetic.main.dialog_single_checkout.*
@@ -35,6 +40,8 @@ import kotlin.collections.HashMap
 
 class BookingActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
     lateinit var pilihTanggal: String
+
+    val dbl = FirebaseFirestore.getInstance().collection("data-booking")
     var jam: String? = null
     val INTENT_MODE = "intent_mode"
     val INTENT_PILIHAN = "intent_pilihan"
@@ -92,17 +99,19 @@ class BookingActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener 
             placeholder.hideView(false)
             pilihan.hideView(true)
 
-            instagram_jadwal.setOnClickListener {
-                val intent = Intent(this, DetailBooking::class.java)
-                if (jam != null) {
-                    intent.putExtra("jam", jam)
-                    intent.putExtra("jenis", intentPilihan)
-                    intent.putExtra("tanggal", pilihTanggal)
-                    startActivity(intent)
-                    this.finish()
-                }
+//            instagram_jadwal.setOnClickListener {
+//                val intent = Intent(this, DetailBooking::class.java)
+//                if (jam != null) {
+//                    intent.putExtra("jam", jam)
+//                    intent.putExtra("jenis", intentPilihan)
+//                    intent.putExtra("tanggal", pilihTanggal)
+//                    startActivity(intent)
+//                    this.finish()
+//                }
+//
+//            }
 
-            }
+
 
             buttonDeclare()
 
@@ -132,15 +141,6 @@ class BookingActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener 
             finish()
             startActivity(intent)
         }
-
-        post.setOnClickListener {
-            showDialogPilihan(1)
-        }
-
-        igtv.setOnClickListener {
-            showDialogPilihan(2)
-        }
-
 
     }
 
@@ -180,204 +180,63 @@ class BookingActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener 
             })
     }
 
+    fun initFirebase(){
+        statuss.text = intentPilihan?.toUpperCase()
+        dbl.document("$pilihTanggal").addSnapshotListener(object : EventListener<DocumentSnapshot>{
+            override fun onEvent(value: DocumentSnapshot?, error: FirebaseFirestoreException?) {
+                val list = ArrayList<BookingModel>()
+                val linearLayoutManager = object : LinearLayoutManager(this@BookingActivity){ override fun canScrollVertically(): Boolean { return false } }
+                list.add(BookingModel("IGTV", "igtv"))
+                list.add(BookingModel("Feed Post", "feed"))
+                list.add(BookingModel("Instastory", "stories"))
+                list.add(BookingModel("Instastory Visit Store", "instastory"))
+                list.add(BookingModel("Highlight", "higlight"))
+                rv_booking.layoutManager = LinearLayoutManager(baseContext)
+//                rv_booking.setHasFixedSize(true)
+//                rv_booking.setNestedScrollingEnabled(false);
+//                rv_booking.addOnItemTouchListener(DisableRecylerView())
+//                rv_booking.addOnItemTouchListener(object : View.OnTouchListener{})
+                rv_booking.adapter = BookingAdapter(list, value!!, jam!!, intentPilihan!!, this@BookingActivity)
+            }
+        })
+    }
     fun buttonDeclare(){
         bt1.setOnClickListener {
             arrayListOf<Button>(bt2, bt3, bt4, bt5).colorState(placeholder, pilihan1, bt1)
             insta.text = "Instagram"
 //            twitter.text = "Twitter"
             jam = "jam9"
+            initFirebase()
         }
         bt2.setOnClickListener {
             arrayListOf<Button>(bt1, bt3, bt4, bt5).colorState(placeholder, pilihan1, bt2)
             insta.text = "Instagram"
 //            twitter.text = "Twitter - Booked"
             jam = "jam13"
+            initFirebase()
         }
         bt3.setOnClickListener {
             arrayListOf<Button>(bt1, bt2, bt4, bt5).colorState(placeholder, pilihan1, bt3)
             insta.text = "Instagram - Booked"
 //            twitter.text = "Twitter - Booked"
             jam = "jam16"
+            initFirebase()
         }
         bt4.setOnClickListener {
             arrayListOf<Button>(bt1, bt2, bt3, bt5).colorState(placeholder, pilihan1, bt4)
             insta.text = "Instagram - Booked"
 //            twitter.text = "Twitter - Booked"
             jam = "jam19"
+            initFirebase()
         }
         bt5.setOnClickListener {
             arrayListOf<Button>(bt1, bt2, bt3, bt4).colorState(placeholder, pilihan1, bt5)
             insta.text = "Instagram - Booked"
 //            twitter.text = "Twitter - Booked"
             jam = "jam22"
+            initFirebase()
         }
     }
 
-
-    fun showDialogPilihan(mode: Int) {
-        val dialog = Dialog(this)
-        with(dialog){
-            requestWindowFeature(Window.FEATURE_NO_TITLE)
-            setCancelable(true)
-            getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            setContentView(R.layout.dialog_jenis)
-            when(mode){
-                1 -> {
-                    val type = "facebook"
-                    umum.text = "Foto"
-                    umkm.text = "Video"
-                    umum.setOnClickListener {
-                        doSingleBooking("$type.${umum.text}", dialog)
-                    }
-
-                    umkm.setOnClickListener {
-                        doSingleBooking("$type.${umkm.text}", dialog)
-                    }
-                }
-
-                2 -> {
-                    val type = "facebook"
-                    umum.text = "Tweet"
-                    umkm.text = "Fleet"
-                    umum.setOnClickListener {
-                        doSingleBooking("$type.${umum.text}", dialog)
-                    }
-
-                    umkm.setOnClickListener {
-                        doSingleBooking("$type.${umkm.text}", dialog)
-                    }
-                }
-            }
-
-
-            dialog.show()
-        }
-    }
-
-    fun doSingleBooking(type: String, dialog: Dialog){
-        val appPreferences = AppPreferences(this)
-        val time = Date()
-        var tagihan = ""
-//            appPreferences.jobs = dialog.edt_jobs.text.toString()
-            time.hours = time.hours + 1
-
-            FirebaseFirestore.getInstance().collection("harga")
-                .document("instagram")
-                .collection("instagram")
-                .document(intentPilihan)
-                .addSnapshotListener { value, error ->
-//                    dialog.total.text = "" + value?.get(paket)
-                    tagihan = "" + value?.get(type)
-                }
-
-            val gen = randomString(15)
-            db.add(
-                HistoriData(
-                    gen,
-                    "${time.time}",
-                    true,
-                    false,
-                    "${appPreferences.uid}",
-                    "${appPreferences.nama}",
-                    "${appPreferences.email}",
-                    "${appPreferences.nohp}",
-                    "${appPreferences.jobs}",
-                    "$type",
-                    null,
-                    tagihan
-                )
-            )
-                .addOnCompleteListener(object : OnCompleteListener<DocumentReference> {
-                    override fun onComplete(p0: Task<DocumentReference>) {
-                        dialog.cancel()
-                        Toast.makeText(this@BookingActivity, "Berhasil Checkout", Toast.LENGTH_LONG).show()
-                        val intent = Intent(this@BookingActivity, DetailCheckout::class.java)
-                        intent.putExtra("cek", "${p0.result?.id}")
-                        startActivity(intent)
-                    }
-
-                })
-    }
-
-//    fun showDialogPilihan(
-//        paket: String,
-//        title: String,
-//        jenis: BookingModel,
-//        mode: String,
-//        context: Context,
-//        jamMode: String,
-//        db: DocumentReference
-//    ) {
-//
-//        Log.d("haha", "$paket ${jenis.nama} $mode $jamMode")
-//        var tagihan = ""
-//        val appPreferences = AppPreferences(context)
-//        val dialog = Dialog(context)
-//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-//        dialog.setCancelable(true)
-//        dialog.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-//        dialog.setContentView(R.layout.dialog_single_checkout)
-//        FirebaseFirestore.getInstance().collection("harga")
-//            .document("instagram")
-//            .collection("instagram")
-//            .document("$mode")
-//            .addSnapshotListener { value, error ->
-//                if(jenis.prefix == "stories"){
-//                    dialog.total.text = "${value!!["${jenis.prefix}"]}"
-//                    tagihan = "${value!!["${jenis.prefix}"]}"
-//                }else{
-//                    dialog.total.text = "${value!!["$jamMode.${jenis.prefix}"]}"
-//                    tagihan = "${value!!["$jamMode.${jenis.prefix}"]}"
-//                }
-//            }
-//
-//
-//        dialog.checkout.setOnClickListener {
-//            if(true){
-//
-//                val date = Date()
-//                date.hours = date.hours +1
-//                db.update("$jam.instagram.${jenis.prefix}.timestamp", date.time)
-//                db.update("$jam.instagram.${jenis.prefix}.isBooked", true)
-//                db.update("$jam.instagram.${jenis.prefix}.uid", appPreferences.uid)
-//                Toast.makeText(
-//                    context,
-//                    "Slot Ini Berhasil Di Booking",
-//                    Toast.LENGTH_SHORT
-//                ).show()
-//                val gen = TransNumGenerator(15, ThreadLocalRandom.current())
-//                FirebaseFirestore.getInstance().collection("histori-transaksi").add(
-//                    HistoriData(
-//                        gen.nextString(),
-//                        "${date.time}",
-//                        true,
-//                        false,
-//                        "${appPreferences.uid}",
-//                        "${appPreferences.nama}",
-//                        "${appPreferences.email}",
-//                        "${appPreferences.nohp}",
-//                        ""+appPreferences.jobs,
-//                        "${if(true)  "" else ""} ${jenis.nama} -$mode-",
-//                        null,
-//                        tagihan,
-//                        true,
-//                        db.id,
-//                        "$jam.instagram.${jenis.prefix}"
-//                    )
-//                )
-//                    .addOnCompleteListener(object : OnCompleteListener<DocumentReference> {
-//                        override fun onComplete(p0: Task<DocumentReference>) {
-//                            p0.result?.id?.let { it1 -> Log.d("fuck", it1) }
-//                            val intent = Intent(context, DetailCheckout::class.java)
-//                            intent.putExtra("cek", "${p0.result?.id}")
-//                            Log.d("testIntent", "${p0.result?.id}")
-//                            startActivity(intent)
-//                        }
-//
-//                    })
-//            }
-//        }
-//        dialog.show()
-//    }
 }
 

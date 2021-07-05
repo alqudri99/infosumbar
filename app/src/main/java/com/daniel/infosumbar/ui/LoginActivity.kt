@@ -77,84 +77,84 @@ class LoginActivity : AppCompatActivity() {
 
 
     fun signUp() {
-//        val appPreferences = AppPreferences(this)
-//        val dialog2 = Dialog(this)
-//        var state = true
-//        dialog2.requestWindowFeature(Window.FEATURE_NO_TITLE)
-//        dialog2.setCancelable(true)
-//        dialog2.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-//        dialog2.setContentView(R.layout.dialog_biodata)
-//
-//        dialog2.keterangan.text = "Silahkan menginput Data Kamu"
-//        dialog2.edt_gaji.visibility = View.VISIBLE
-//
-////        FirebaseFirestore.getInstance().collection("data-pengguna").document("${user.uid}").get()
-////            .addOnSuccessListener {
-////                it["sallary"]?.let{dialog2.edt_gaji.setText(it.toString())}
-////                it["job"]?.let{dialog2.edt_pekerjaan .setText(it.toString())}
-////                it["name"]?.let{dialog2.edt_namaa .setText(it.toString())}
-////                it["password"]?.let{dialog2.edt_password .setText(it.toString())}
-////            }
-//
-//        dialog2.konfirmasi.setOnClickListener {
-//            var isDone = false
-//            with(dialog2){
-//                Log.d("adasa", "${edt_pekerjaan.text}  ${edt_password.text}  ${edt_namaa.text}")
+        val appPreferences = AppPreferences(this)
+        val dialog2 = Dialog(this)
+        var state = true
+        dialog2.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog2.setCancelable(true)
+        dialog2.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog2.setContentView(R.layout.dialog_biodata)
+
+        dialog2.keterangan.text = "Silahkan menginput Data Kamu"
+        dialog2.edt_gaji.visibility = View.VISIBLE
+
+//        FirebaseFirestore.getInstance().collection("data-pengguna").document("${user.uid}").get()
+//            .addOnSuccessListener {
+//                it["sallary"]?.let{dialog2.edt_gaji.setText(it.toString())}
+//                it["job"]?.let{dialog2.edt_pekerjaan .setText(it.toString())}
+//                it["name"]?.let{dialog2.edt_namaa .setText(it.toString())}
+//                it["password"]?.let{dialog2.edt_password .setText(it.toString())}
 //            }
-//            if (dialog2.edt_gaji.text.isNotEmpty()) {
-//                val gaji = dialog2.edt_gaji.text.toString().toInt()
-//                if (gaji > 5000000) {
-//                    appPreferences.jenis = "umum"
-//                } else {
-//                    appPreferences.jenis = "umkm"
-//                }
-//                FirebaseFirestore.getInstance().collection("data-pengguna").whereEqualTo("email", dialog2.edt_email.makeString())
-//                    .addSnapshotListener(object : EventListener<QuerySnapshot> {
-//                        override fun onEvent(
-//                            value: QuerySnapshot?,
-//                            error: FirebaseFirestoreException?
-//                        ) {
-//                            val data = value!!.documents
-//                            Log.d("aassa", "data : ${data.size}")
-//                            if (data.size == 0 && !isDone) {
-//                                isDone = true
-//                                val uid = randomString(40)
-//                                FirebaseFirestore.getInstance().collection("data-pengguna").document(uid)
-//                                    .set(
-//                                        userData(
-//                                            name = dialog2.edt_namaa.makeString(),
-//                                            email = dialog2.edt_email.makeString(),
-//                                            uid = uid,
-//                                            job = dialog2.edt_pekerjaan.makeString(),
-//                                            password = dialog2.edt_password.makeString(),
-//                                            sallary = dialog2.edt_gaji.makeString(),
-//                                            no_hp = dialog2.edt_no_hp.makeString()
-//                                        )
-//                                    ).addOnCompleteListener() {
-//                                        with(dialog2){
-//                                            dialog2.cancel()
-//                                            login()
-//                                            Toast.makeText(baseContext, "Pendaftaran Berhasil!, silahkan Login", Toast.LENGTH_LONG).show()
-//                                        }
-//                                        if (it.isSuccessful) {
-////                        showDialogPilihan(user)
-//                                        } else {
-//                                            Toast.makeText(baseContext, "Gagal Daftar", Toast.LENGTH_LONG).show()
-//                                        }
-//                                    }
-//                            }else Toast.makeText(baseContext, "Telah terdaftar sebelumnya, Silahkan Login!", Toast.LENGTH_SHORT).show()
-//
-//                        }
-//
-//                    })
-//
-//            } else {
-//                Toast.makeText(this, "Input Gaji Terlebih Dahulu!", Toast.LENGTH_SHORT).show()
-//            }
-//        }
-//
-//        dialog2.close.cancel(dialog2)
-//        dialog2.show()
+
+        dialog2.konfirmasi.setOnClickListener {
+            var isDone = false
+            with(dialog2){
+                Log.d("adasa", "${edt_pekerjaan.text}  ${edt_password.text}  ${edt_namaa.text}")
+            }
+            if (dialog2.edt_gaji.text.isNotEmpty()) {
+                val gaji = dialog2.edt_gaji.text.toString().toInt()
+                if (gaji > 5000000) {
+                    appPreferences.jenis = "umum"
+                } else {
+                    appPreferences.jenis = "umkm"
+                }
+                FirebaseFirestore.getInstance().collection("data-pengguna").whereEqualTo("email", dialog2.edt_email.makeString())
+                    .addSnapshotListener(object : EventListener<QuerySnapshot> {
+                        override fun onEvent(
+                            value: QuerySnapshot?,
+                            error: FirebaseFirestoreException?
+                        ) {
+                            val data = value!!.documents
+                            Log.d("aassa", "data : ${data.size}")
+                            if (data.size == 0 && !isDone) {
+                                isDone = true
+                                val uid = randomString(40)
+                                FirebaseFirestore.getInstance().collection("data-pengguna").document(uid)
+                                    .set(
+                                        userData(
+                                            name = dialog2.edt_namaa.makeString(),
+                                            email = dialog2.edt_email.makeString(),
+                                            uid = uid,
+                                            job = dialog2.edt_pekerjaan.makeString(),
+                                            password = dialog2.edt_password.makeString(),
+                                            sallary = dialog2.edt_gaji.makeString(),
+                                            no_hp = dialog2.edt_no_hp.makeString()
+                                        )
+                                    ).addOnCompleteListener() {
+                                        with(dialog2){
+                                            dialog2.cancel()
+                                            login()
+                                            Toast.makeText(baseContext, "Pendaftaran Berhasil!, silahkan Login", Toast.LENGTH_LONG).show()
+                                        }
+                                        if (it.isSuccessful) {
+//                        showDialogPilihan(user)
+                                        } else {
+                                            Toast.makeText(baseContext, "Gagal Daftar", Toast.LENGTH_LONG).show()
+                                        }
+                                    }
+                            }else Toast.makeText(baseContext, "Telah terdaftar sebelumnya, Silahkan Login!", Toast.LENGTH_SHORT).show()
+
+                        }
+
+                    })
+
+            } else {
+                Toast.makeText(this, "Input Gaji Terlebih Dahulu!", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        dialog2.close.cancel(dialog2)
+        dialog2.show()
     }
 
     fun login(){
@@ -168,16 +168,20 @@ class LoginActivity : AppCompatActivity() {
         dialog.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.setContentView(R.layout.dialog_login_info)
 
+        dialog.close_info.setOnClickListener {
+            Log.d("asas", "clicked")
+            dialog.cancel()
+        }
         dialog.disablePassword.setOnClickListener {
             if(initState){
-                dialog.edt_password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                dialog.edt_password_login_info.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
                 initState = false
-                dialog.edt_password.setSelection(dialog.edt_password.text.toString().length)
+                dialog.edt_password_login_info.setSelection(dialog.edt_password_login_info.text.toString().length)
                 dialog.disablePassword.setImageResource(R.drawable.ic_baseline_blur_off_24)
             }else{
-                dialog.edt_password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                dialog.edt_password_login_info.setTransformationMethod(PasswordTransformationMethod.getInstance());
                 initState = true
-                dialog.edt_password.setSelection(dialog.edt_password.text.toString().length)
+                dialog.edt_password_login_info.setSelection(dialog.edt_password_login_info.text.toString().length)
                 dialog.disablePassword.setImageResource(R.drawable.ic_baseline_blur_on_24)
             }
         }
@@ -229,9 +233,10 @@ class LoginActivity : AppCompatActivity() {
             }
         }
         dialog.btn_sign_up.setOnClickListener {
+
+            Log.d("asas", "kidshf")
             signUp()
         }
-        dialog.close_info.cancel(dialog)
         dialog.show()
     }
 

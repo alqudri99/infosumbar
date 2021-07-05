@@ -13,6 +13,7 @@ import android.view.Window
 import android.widget.Toast
 import com.daniel.infosumbar.R
 import com.daniel.infosumbar.helper.AppPreferences
+import com.daniel.infosumbar.model.HistoriData
 import com.daniel.infosumbar.model.userData
 import com.daniel.infosumbar.utills.loadRounded
 import com.daniel.infosumbar.utills.makeString
@@ -23,11 +24,10 @@ import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.common.api.ResultCallback
 import com.google.android.gms.common.api.Status
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.EventListener
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.FirebaseFirestoreException
-import com.google.firebase.firestore.QuerySnapshot
+import com.google.firebase.firestore.*
 import kotlinx.android.synthetic.main.activity_homa.*
 import kotlinx.android.synthetic.main.dialog_biodata.*
 import kotlinx.android.synthetic.main.dialog_gaji.*
@@ -38,17 +38,20 @@ import kotlinx.android.synthetic.main.dialog_login.close
 import kotlinx.android.synthetic.main.dialog_login.keterangan
 import kotlinx.android.synthetic.main.dialog_login.konfirmasi
 import kotlinx.android.synthetic.main.dialog_terms_condition.*
+import java.util.*
 
 class HomaActivity : AppCompatActivity(),
     GoogleApiClient.OnConnectionFailedListener {
+    lateinit var appPreferences: AppPreferences
     val INTENT_MODE = "intent_mode"
     val INTENT_PILIHAN = "intent_pilihan"
     private var googleApiClient: GoogleApiClient? = null
     private var gso: GoogleSignInOptions? = null
+    val db = FirebaseFirestore.getInstance().collection("histori-transaksi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_homa)
-        val appPreferences = AppPreferences(this)
+        appPreferences = AppPreferences(this)
 
         val intent = Intent(this, BookingActivity::class.java)
         avatar.loadRounded(appPreferences.avatar)
@@ -58,6 +61,10 @@ class HomaActivity : AppCompatActivity(),
 
         termsbt.setOnClickListener {
             showDialog()
+        }
+
+        singlePack.setOnClickListener {
+            showPilihan()
         }
 
         komplit.setOnClickListener {
@@ -123,6 +130,7 @@ class HomaActivity : AppCompatActivity(),
         dialog.setCancelable(true)
         dialog.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.setContentView(R.layout.dialog_jenis)
+        dialog.status.text = appPreferences.jenis
         dialog.umum.setOnClickListener {
             val appPreferences = AppPreferences(this@HomaActivity)
             appPreferences.uid = null
@@ -142,7 +150,6 @@ class HomaActivity : AppCompatActivity(),
 
     }
     fun changeBio() {
-        val appPreferences = AppPreferences(this)
         val dialog2 = Dialog(this)
         var state = true
         dialog2.requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -150,6 +157,7 @@ class HomaActivity : AppCompatActivity(),
         dialog2.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog2.setContentView(R.layout.dialog_biodata)
 
+//        dialog2.status.text = appPreferences.jenis
         dialog2.keterangan.text = "Silahkan menginput Data Kamu"
         dialog2.edt_gaji.visibility = View.VISIBLE
         var uid = ""
@@ -212,5 +220,115 @@ class HomaActivity : AppCompatActivity(),
     }
     override fun onConnectionFailed(p0: ConnectionResult) {
 
+    }
+
+    fun showPilihan() {
+        val dialog = Dialog(this)
+        with(dialog){
+            requestWindowFeature(Window.FEATURE_NO_TITLE)
+            setCancelable(true)
+            getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            setContentView(R.layout.dialog_jenis)
+                    umum.text = "Facebook"
+                    umkm.text = "Twitter"
+                    umum.setOnClickListener {
+                        showDialogPilihan(1)
+                    }
+
+                    umkm.setOnClickListener {
+                        showDialogPilihan(2)
+                    }
+
+            dialog.show()
+        }
+    }
+
+
+
+    fun showDialogPilihan(mode: Int) {
+        val dialog = Dialog(this)
+        with(dialog){
+            requestWindowFeature(Window.FEATURE_NO_TITLE)
+            setCancelable(true)
+            getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            setContentView(R.layout.dialog_jenis)
+            when(mode){
+                1 -> {
+                    val type = "facebook"
+                    umum.text = "Foto"
+                    umkm.text = "Video"
+                    umum.setOnClickListener {
+                        doSingleBooking("$type.${umum.text}".toLowerCase(), dialog)
+                    }
+
+                    umkm.setOnClickListener {
+                        doSingleBooking("$type.${umkm.text}".toLowerCase(), dialog)
+                    }
+                }
+
+                2 -> {
+                    val type = "twitter"
+                    umum.text = "Tweet"
+                    umkm.text = "Fleet"
+                    umum.setOnClickListener {
+                        doSingleBooking("$type.${umum.text}".toLowerCase(), dialog)
+                    }
+
+                    umkm.setOnClickListener {
+                        doSingleBooking("$type.${umkm.text}".toLowerCase(), dialog)
+                    }
+                }
+            }
+
+
+            dialog.show()
+        }
+    }
+
+
+
+    fun doSingleBooking(type: String, dialog: Dialog){
+        val appPreferences = AppPreferences(this)
+        val time = Date()
+        var tagihan = ""
+//            appPreferences.jobs = dialog.edt_jobs.text.toString()
+        time.hours = time.hours + 1
+
+        FirebaseFirestore.getInstance().collection("harga")
+            .document("instagram")
+            .collection("instagram")
+            .document("${appPreferences.jenis}")
+            .addSnapshotListener { value, error ->
+//                    dialog.total.text = "" + value?.get(paket)
+                tagihan = "" + value?.get(type)
+            }
+
+        val gen = randomString(15)
+        db.add(
+            HistoriData(
+                gen,
+                "${time.time}",
+                true,
+                false,
+                "${appPreferences.uid}",
+                "${appPreferences.nama}",
+                "${appPreferences.email}",
+                "${appPreferences.nohp}",
+                "${appPreferences.jobs}",
+                "$type",
+                null,
+                tagihan
+            )
+        )
+            .addOnCompleteListener(object : OnCompleteListener<DocumentReference> {
+                override fun onComplete(p0: Task<DocumentReference>) {
+                    dialog.cancel()
+                    Toast.makeText(this@HomaActivity, "Berhasil Checkout", Toast.LENGTH_LONG).show()
+                    val intent = Intent(this@HomaActivity, DetailCheckout::class.java)
+                    intent.putExtra("cek", "${p0.result?.id}")
+                    startActivity(intent)
+                }
+
+            })
     }
 }
