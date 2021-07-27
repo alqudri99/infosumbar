@@ -38,14 +38,39 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/segoeui_semibold"
-            android:text="Twitter"
+            android:text="Twitter -Tweet"
             />
         <EditText
-            android:id="@+id/edt_twitter"
+            android:id="@+id/edt_twitter_tweet"
             android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:hint="Twitter"
+            android:hint="Twitter -Tweet"
+            android:background="@drawable/bg_edt" />
+    </LinearLayout>
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/segoeui_semibold"
+            android:text="Twitter -Fleet"
+            />
+        <EditText
+            android:id="@+id/edt_twitter_fleet"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Twitter -Fleet"
             android:background="@drawable/bg_edt" />
     </LinearLayout>
 

@@ -11,9 +11,6 @@
 <ImageView
     android:layout_width="300dp"
     android:layout_height="300dp"
-    android:src="@drawable/info"
+    android:src="@drawable/danil"
     />
-
-
-
 </LinearLayout>

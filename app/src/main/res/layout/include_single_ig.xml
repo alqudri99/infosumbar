@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:fontFamily="@font/segoeui_semibold"
-                android:text="Umum"
+                android:text="Corporate"
                 android:textColor="#252525"
                 android:textSize="15dp" />
 
@@ -74,14 +74,36 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/segoeui_semibold"
-                    android:text="Stories"
+                    android:text="Instastory"
                     />
                 <EditText
                     android:id="@+id/edt_stories"
                     android:padding="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:hint="Stories"
+                    android:hint="Instastory"
+                    android:background="@drawable/bg_edt" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/segoeui_semibold"
+                    android:text="Instastory Visit Store"
+                    />
+                <EditText
+                    android:id="@+id/edt_stories_visit"
+                    android:padding="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:hint="Instastory Visit Store"
                     android:background="@drawable/bg_edt" />
             </LinearLayout>
 
@@ -104,6 +126,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:hint="IGTV"
+                    android:background="@drawable/bg_edt" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/segoeui_semibold"
+                    android:text="Highlight"
+                    />
+                <EditText
+                    android:id="@+id/edt_highlight"
+                    android:padding="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:hint="Highlight"
                     android:background="@drawable/bg_edt" />
             </LinearLayout>
 
@@ -152,17 +187,37 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/segoeui_semibold"
-                    android:text="Stories"
+                    android:text="Instastories"
                     />
                 <EditText
                     android:id="@+id/edt_stories_umkm"
                     android:padding="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:hint="Stories"
+                    android:hint="Instastories"
                     android:background="@drawable/bg_edt" />
             </LinearLayout>
-
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/segoeui_semibold"
+                    android:text="Instastory Visit Store"
+                    />
+                <EditText
+                    android:id="@+id/edt_stories_visit_umkm"
+                    android:padding="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:hint="Instastory Visit Store"
+                    android:background="@drawable/bg_edt" />
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -184,6 +239,28 @@
                     android:hint="IGTV"
                     android:background="@drawable/bg_edt" />
             </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/segoeui_semibold"
+                android:text="Highlight"
+                />
+            <EditText
+                android:id="@+id/edt_highlight_umkm"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="IGTV"
+                android:background="@drawable/bg_edt" />
+        </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
