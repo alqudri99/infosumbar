@@ -147,13 +147,8 @@ class BookingAdapter(var list: List<BookingModel>, var doc: DocumentSnapshot, va
             .collection("instagram")
             .document("$mode")
             .addSnapshotListener { value, error ->
-                if(jenis.prefix == "stories"){
-                    dialog.total.text = "${value!!["${jenis.prefix}"]}"
-                    tagihan = "${value!!["${jenis.prefix}"]}"
-                }else{
                     dialog.total.text = "${value!!["$jamMode.${jenis.prefix}"]}"
                     tagihan = "${value!!["$jamMode.${jenis.prefix}"]}"
-                }
             }
 
 

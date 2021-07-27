@@ -32,7 +32,7 @@ class DetailPaketBooking : AppCompatActivity() {
         setContentView(R.layout.activity_detail_paket_booking)
         val intentPilihan = intent.getStringExtra(INTENT_PILIHAN)
         val intentMode = intent.getStringExtra(INTENT_MODE)
-        status.text = intentPilihan?.toUpperCase()
+        status.text = (if(intentPilihan.equals("umum")) "corporate" else intentPilihan)?.toUpperCase()
         paket1.setOnClickListener {
             if (intentPilihan != null && intentMode != null) {
                 showDialogPilihan(
@@ -99,13 +99,7 @@ class DetailPaketBooking : AppCompatActivity() {
                 tagihan = "" + value?.get(paket)
             }
 
-        if (appPreferences.jobs != null){
-            dialog.edt_jobs.setText(appPreferences.jobs)
-        }
-
         dialog.checkout.setOnClickListener {
-            if(dialog.edt_jobs.text.isNotEmpty()){
-                appPreferences.jobs = dialog.edt_jobs.text.toString()
                 time.hours = time.hours + 1
 
                 val gen = randomString(15)
@@ -119,7 +113,7 @@ class DetailPaketBooking : AppCompatActivity() {
                         "${appPreferences.nama}",
                         "${appPreferences.email}",
                         "${appPreferences.nohp}",
-                        dialog.edt_jobs.text.toString(),
+                        "${appPreferences.jobs}",
                         "$mode $title -$jenis-",
                         null,
                         tagihan
@@ -135,9 +129,6 @@ class DetailPaketBooking : AppCompatActivity() {
                         }
 
                     })
-            }else{
-                dialog.error.visibility = View.VISIBLE
-            }
         }
         dialog.show()
     }

@@ -61,7 +61,7 @@ class BookingActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener 
         hash.put("igtv", DetailBook())
         hash.put("feed", DetailBook())
         hash.put("instastory", DetailBook())
-        hash.put("higlight", DetailBook())
+        hash.put("highlight", DetailBook())
 
         val sdf = SimpleDateFormat("dd-M-yyyy")
         val t = Date()
@@ -156,7 +156,7 @@ class BookingActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener 
                         hash.put("igtv", DetailBook())
                         hash.put("feed", DetailBook())
                         hash.put("instastory", DetailBook())
-                        hash.put("higlight", DetailBook())
+                        hash.put("highlight", DetailBook())
 
                         val date = Data(
                             "$dayOfMonth-${monthOfYear + 1}-$year",
@@ -181,7 +181,7 @@ class BookingActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener 
     }
 
     fun initFirebase(){
-        statuss.text = intentPilihan?.toUpperCase()
+        statuss.text = (if(intentPilihan.equals("umum")) "corporate" else intentPilihan).toUpperCase()
         dbl.document("$pilihTanggal").addSnapshotListener(object : EventListener<DocumentSnapshot>{
             override fun onEvent(value: DocumentSnapshot?, error: FirebaseFirestoreException?) {
                 val list = ArrayList<BookingModel>()
@@ -190,7 +190,7 @@ class BookingActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener 
                 list.add(BookingModel("Feed Post", "feed"))
                 list.add(BookingModel("Instastory", "stories"))
                 list.add(BookingModel("Instastory Visit Store", "instastory"))
-                list.add(BookingModel("Highlight", "higlight"))
+                list.add(BookingModel("Highlight", "highlight"))
                 rv_booking.layoutManager = LinearLayoutManager(baseContext)
 //                rv_booking.setHasFixedSize(true)
 //                rv_booking.setNestedScrollingEnabled(false);

@@ -61,13 +61,13 @@ class AdminSetting : AppCompatActivity() {
             .collection("instagram")
             .document("umum")
             .addSnapshotListener { value, error ->
-                hargaUmum.jenis_pengguna.text = "Umum"
+                hargaUmum.jenis_pengguna.text = "Corporate"
                 hargaUmum.edt_twitter_tweet.setText("${value!!["twitter.tweet"]}")
                 hargaUmum.edt_twitter_fleet.setText("${value!!["twitter.fleet"]}")
                 hargaUmum.edt_fb_video.setText("${value!!["facebook.video"]}")
                 hargaUmum.edt_fb_foto.setText("${value!!["facebook.foto"]}")
 
-                paketUmum.jenis_pengguna1.text = "Umum"
+                paketUmum.jenis_pengguna1.text = "Corporate"
                 paketUmum.edt_paket1.setText("${value["paket1"]}")
                 paketUmum.edt_paket2.setText("${value["paket2"]}")
                 paketUmum.edt_paket3.setText("${value["paket3"]}")

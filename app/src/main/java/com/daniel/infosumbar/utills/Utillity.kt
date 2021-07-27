@@ -85,6 +85,8 @@ fun List<LinearLayout>.layoutBind(
         layBind.edt_igtv_umkm.setText("${value["${data[i]}.igtv"]}")
         layBind.edt_feed_umkm.setText("${value["${data[i]}.feed"]}")
         layBind.edt_stories_umkm.setText("${value["${data[i]}.stories"]}")
+        layBind.edt_highlight_umkm.setText("${value["${data[i]}.highlight"]}")
+        layBind.edt_stories_visit_umkm.setText("${value["${data[i]}.instastory"]}")
         i++
     }
 }
@@ -102,6 +104,8 @@ fun List<LinearLayout>.layoutBindUmum(
         layBind.edt_igtv.setText("${value["${data[i]}.igtv"]}")
         layBind.edt_feed.setText("${value["${data[i]}.feed"]}")
         layBind.edt_stories.setText("${value["${data[i]}.stories"]}")
+        layBind.edt_highlight.setText("${value["${data[i]}.highlight"]}")
+        layBind.edt_stories_visit.setText("${value["${data[i]}.instastory"]}")
         i++
     }
 }
@@ -127,6 +131,8 @@ fun List<LinearLayout>.saveData(
         jadwal[i].put("feed", lay.edt_feed_umkm.text.toString())
         jadwal[i].put("igtv", lay.edt_igtv_umkm.text.toString())
         jadwal[i].put("stories", lay.edt_stories_umkm.text.toString())
+        jadwal[i].put("highlight", lay.edt_highlight_umkm.text.toString())
+        jadwal[i].put("instastory", lay.edt_stories_visit_umkm.text.toString())
         i++
     }
 
@@ -172,6 +178,8 @@ fun List<LinearLayout>.saveDataUmum(
         jadwal[i].put("feed", lay.edt_feed.text.toString())
         jadwal[i].put("igtv", lay.edt_igtv.text.toString())
         jadwal[i].put("stories", lay.edt_stories.text.toString())
+        jadwal[i].put("highlight", lay.edt_highlight.text.toString())
+        jadwal[i].put("instastory", lay.edt_stories_visit.text.toString())
         i++
     }
 

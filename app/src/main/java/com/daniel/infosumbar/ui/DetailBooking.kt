@@ -22,7 +22,7 @@ class DetailBooking : AppCompatActivity() {
         val tanggal = intent.getStringExtra("tanggal")
         val jam = intent.getStringExtra("jam")
         val pilihan = intent.getStringExtra("jenis")
-        status.text = pilihan?.toUpperCase()
+        status.text = (if(pilihan.equals("umum")) "corporate" else pilihan)?.toUpperCase()
         db.document("$tanggal").addSnapshotListener(object : EventListener<DocumentSnapshot>{
             override fun onEvent(value: DocumentSnapshot?, error: FirebaseFirestoreException?) {
                 val list = ArrayList<BookingModel>()
@@ -30,7 +30,7 @@ class DetailBooking : AppCompatActivity() {
                 list.add(BookingModel("Feed Post", "feed"))
                 list.add(BookingModel("Instastory", "stories"))
                 list.add(BookingModel("Instastory Visit Store", "instastory"))
-                list.add(BookingModel("Highlight", "higlight"))
+                list.add(BookingModel("Highlight", "highlight"))
             rv_booking.layoutManager = LinearLayoutManager(baseContext)
             rv_booking.adapter = BookingAdapter(list, value!!, jam!!, pilihan!!, this@DetailBooking)
         }

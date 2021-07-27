@@ -1,7 +1,9 @@
 package com.daniel.infosumbar
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.text.Html
@@ -9,6 +11,7 @@ import android.util.Log
 import android.view.Gravity
 import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.core.view.marginLeft
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.tejpratapsingh.pdfcreator.activity.PDFCreatorActivity
@@ -122,6 +125,7 @@ class PdfActivity : PDFCreatorActivity() {
         return headerView
     }
 
+    @SuppressLint("SimpleDateFormat")
     override fun getBodyViews(): PDFBody {
 
         val imageView = PDFImageView(applicationContext)
@@ -148,6 +152,9 @@ class PdfActivity : PDFCreatorActivity() {
         val tableView =
             PDFTableView(applicationContext, tableHeader, tableRowView1)
         var no = 1
+
+        val gd = GradientDrawable()
+        gd.setStroke(1, -0x1000000)
         for (doc: DocumentSnapshot in printData) {
             // Create 10 rows
             val tableRowView = PDFTableRowView(applicationContext)
@@ -158,22 +165,47 @@ class PdfActivity : PDFCreatorActivity() {
                 if(j == 0){
                     val pdfTextView =
                         PDFTextView(applicationContext, PDFTextView.PDF_TEXT_SIZE.P)
-                    pdfTextView.setText("$no")
+
+                    pdfTextView.view.background = gd
+                    pdfTextView.view.setPadding(4, 0,0,0)
+                    pdfTextView.setText("$no\n\u200E \u200F \n\u200E \u200F ")
+
                     tableRowView.addToRow(pdfTextView)
                 }else if (j == 4){
                     val pdfTextView =
                         PDFTextView(applicationContext, PDFTextView.PDF_TEXT_SIZE.P)
                     gDate.time = doc[s].toString().toLong()
+                    pdfTextView.view.background = gd
+                    pdfTextView.view.setPadding(4, 0,0,0)
                     val sdf = SimpleDateFormat("dd-M-yyyy")
                     val t = Date()
                     val currentDate = sdf.format(t)
-                    pdfTextView.setText("$currentDate")
+                    pdfTextView.setText("$currentDate\n\u200E \u200F " +
+                            "\n\u200E \u200F ")
                     tableRowView.addToRow(pdfTextView)
                 }else{
-                    val pdfTextView =
-                        PDFTextView(applicationContext, PDFTextView.PDF_TEXT_SIZE.P)
-                    pdfTextView.setText("${doc[s]}")
-                    tableRowView.addToRow(pdfTextView)
+                    when(j){
+                        1, 5 ->{
+
+                            val pdfTextView =
+                                PDFTextView(applicationContext, PDFTextView.PDF_TEXT_SIZE.P)
+                            pdfTextView.view.background = gd
+                            pdfTextView.view.setPadding(4, 0,0,0)
+                            pdfTextView.setText("${doc[s]}\n" +
+                                    "\u200E \u200F ")
+                            tableRowView.addToRow(pdfTextView)
+                        }
+                        else ->{
+
+                            val pdfTextView =
+                                PDFTextView(applicationContext, PDFTextView.PDF_TEXT_SIZE.P)
+                            pdfTextView.view.background = gd
+                            pdfTextView.view.setPadding(4, 0,0,0)
+                            pdfTextView.setText("${doc[s]}\n\u200E \u200F " +
+                                    "\n\u200E \u200F")
+                            tableRowView.addToRow(pdfTextView)
+                        }
+                    }
                 }
                 j++
             }

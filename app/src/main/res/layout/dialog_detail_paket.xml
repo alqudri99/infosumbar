@@ -111,15 +111,6 @@
         </LinearLayout>
 
 
-        <EditText
-            android:id="@+id/edt_jobs"
-            android:hint="Pekerjaan Anda"
-            android:layout_width="match_parent"
-            android:padding="5dp"
-            android:layout_marginTop="20dp"
-            android:layout_height="35dp"
-            android:background="@drawable/bg_edt"
-            />
 
         <Button
             android:id="@+id/checkout"

@@ -74,7 +74,7 @@
             android:layout_marginBottom="10dp"
             android:background="@drawable/bg_button_pilihan"
             android:gravity="center"
-            android:text="Paket Single"
+            android:text="Edit Data"
             android:textColor="#FFFFFF" />
 
         <Button

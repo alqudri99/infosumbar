@@ -5,16 +5,19 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import android.util.Log
-import android.view.View
 import android.view.Window
+import android.widget.RadioGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.daniel.infosumbar.R
 import com.daniel.infosumbar.helper.AppPreferences
 import com.daniel.infosumbar.model.HistoriData
 import com.daniel.infosumbar.model.userData
+import com.daniel.infosumbar.utills.close
 import com.daniel.infosumbar.utills.loadRounded
 import com.daniel.infosumbar.utills.makeString
 import com.daniel.infosumbar.utills.randomString
@@ -22,22 +25,17 @@ import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.api.GoogleApiClient
-import com.google.android.gms.common.api.ResultCallback
-import com.google.android.gms.common.api.Status
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
 import kotlinx.android.synthetic.main.activity_homa.*
 import kotlinx.android.synthetic.main.dialog_biodata.*
 import kotlinx.android.synthetic.main.dialog_gaji.*
-import kotlinx.android.synthetic.main.dialog_gaji.edt_gaji
 import kotlinx.android.synthetic.main.dialog_jenis.*
-import kotlinx.android.synthetic.main.dialog_login.*
-import kotlinx.android.synthetic.main.dialog_login.close
 import kotlinx.android.synthetic.main.dialog_login.keterangan
 import kotlinx.android.synthetic.main.dialog_login.konfirmasi
 import kotlinx.android.synthetic.main.dialog_terms_condition.*
+import java.io.File
 import java.util.*
 
 class HomaActivity : AppCompatActivity(),
@@ -54,7 +52,6 @@ class HomaActivity : AppCompatActivity(),
         appPreferences = AppPreferences(this)
 
         val intent = Intent(this, BookingActivity::class.java)
-        avatar.loadRounded(appPreferences.avatar)
 //
 //        FirebaseFirestore.getInstance().collection("harga").document("jam9").set()
 //        FirebaseFirestore.getInstance().collection("data-booking")
@@ -68,7 +65,8 @@ class HomaActivity : AppCompatActivity(),
         }
 
         komplit.setOnClickListener {
-            intent.putExtra(INTENT_MODE, "1")
+            val intent = Intent(this@HomaActivity, DetailPaketBooking::class.java)
+            intent.putExtra(INTENT_MODE, "instagram")
             intent.putExtra(INTENT_PILIHAN, appPreferences.jenis)
             startActivity(intent)
         }
@@ -130,7 +128,11 @@ class HomaActivity : AppCompatActivity(),
         dialog.setCancelable(true)
         dialog.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.setContentView(R.layout.dialog_jenis)
-        dialog.status.text = appPreferences.jenis
+
+        dialog.close_login_p.setOnClickListener{
+            dialog.cancel()
+        }
+        dialog.status.text = if(appPreferences.jenis.equals("umum")) "corporate" else appPreferences.jenis
         dialog.umum.setOnClickListener {
             val appPreferences = AppPreferences(this@HomaActivity)
             appPreferences.uid = null
@@ -151,24 +153,65 @@ class HomaActivity : AppCompatActivity(),
     }
     fun changeBio() {
         val dialog2 = Dialog(this)
-        var state = true
+        var initState = true
         dialog2.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog2.setCancelable(true)
         dialog2.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog2.setContentView(R.layout.dialog_biodata)
-
+dialog2.konfirmasi.text = "Edit"
+        dialog2.title.text = "Daftar"
 //        dialog2.status.text = appPreferences.jenis
         dialog2.keterangan.text = "Silahkan menginput Data Kamu"
-        dialog2.edt_gaji.visibility = View.VISIBLE
+//        dialog2.edt_gaji.visibility = View.VISIBLE
         var uid = ""
+
+        dialog2.disablePassword_r.setOnClickListener {
+            if(initState){
+                dialog2.edt_password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                initState = false
+                dialog2.edt_password.setSelection(dialog2.edt_password.text.toString().length)
+                dialog2.disablePassword_r.setImageResource(R.drawable.ic_baseline_blur_off_24)
+            }else{
+                dialog2.edt_password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                initState = true
+                dialog2.edt_password.setSelection(dialog2.edt_password.text.toString().length)
+                dialog2.disablePassword_r.setImageResource(R.drawable.ic_baseline_blur_on_24)
+            }
+        }
+        var gajiValue = 0
+
+        dialog2.rg_gar.setOnCheckedChangeListener(object : RadioGroup.OnCheckedChangeListener{
+            override fun onCheckedChanged(group: RadioGroup?, checkedId: Int) {
+                when(checkedId){
+                    R.id.rb_umkm ->{
+                        gajiValue = 30000000
+                    }
+
+                    R.id.rb_umum ->{
+                        gajiValue = 31100000
+                    }
+                }
+            }
+
+        })
         FirebaseFirestore.getInstance().collection("data-pengguna").document("${appPreferences.uid}").get()
-            .addOnSuccessListener {
-                it["sallary"]?.let{dialog2.edt_gaji.setText(it.toString())}
-                it["job"]?.let{dialog2.edt_pekerjaan .setText(it.toString())}
-                it["name"]?.let{dialog2.edt_namaa .setText(it.toString())}
-                it["password"]?.let{dialog2.edt_password .setText(it.toString())}
-                it["no_hp"]?.let{dialog2.edt_password .setText(it.toString())}
-                uid = it["no_hp"].toString()
+            .addOnSuccessListener {it2 ->
+                it2["sallary"]?.let{
+                    gajiValue = "$it".toInt()
+                }
+                Log.d("asasasa", "$gajiValue")
+                if(gajiValue < 31100000){
+                    dialog2.rg_gar.check(R.id.rb_umkm)
+                }else{
+                    dialog2.rg_gar.check(R.id.rb_umum)
+                }
+
+                it2["email"]?.let{dialog2.edt_email .setText(it.toString())}
+                it2["job"]?.let{dialog2.edt_pekerjaan .setText(it.toString())}
+                it2["name"]?.let{dialog2.edt_namaa .setText(it.toString())}
+                it2["password"]?.let{dialog2.edt_password .setText(it.toString())}
+                it2["no_hp"]?.let{dialog2.edt_no_hp .setText(it.toString())}
+                uid = it2["uid"].toString()
             }
 
         dialog2.konfirmasi.setOnClickListener {
@@ -176,9 +219,9 @@ class HomaActivity : AppCompatActivity(),
             with(dialog2){
                 Log.d("adasa", "${edt_pekerjaan.text}  ${edt_password.text}  ${edt_namaa.text}")
             }
-            if (dialog2.edt_gaji.text.isNotEmpty()) {
-                val gaji = dialog2.edt_gaji.text.toString().toInt()
-                if (gaji > 5000000) {
+//            if (dialog2.edt_gaji.text.isNotEmpty()) {
+                val gaji = gajiValue
+                if (gaji > 30100000) {
                     appPreferences.jenis = "umum"
                 } else {
                     appPreferences.jenis = "umkm"
@@ -192,7 +235,7 @@ class HomaActivity : AppCompatActivity(),
                                             uid = uid,
                                             job = dialog2.edt_pekerjaan.makeString(),
                                             password = dialog2.edt_password.makeString(),
-                                            sallary = dialog2.edt_gaji.makeString(),
+                                            sallary = gajiValue.toString(),
                                             no_hp = dialog2.edt_no_hp.makeString()
                                         )
                                     ).addOnCompleteListener() {
@@ -208,12 +251,12 @@ class HomaActivity : AppCompatActivity(),
                                         }
                                     }
 
-            } else {
-                Toast.makeText(this, "Input Gaji Terlebih Dahulu!", Toast.LENGTH_SHORT).show()
-            }
+//            } else {
+//                Toast.makeText(this, "Input Gaji Terlebih Dahulu!", Toast.LENGTH_SHORT).show()
+//            }
         }
 
-        dialog2.close.setOnClickListener {
+        dialog2.close_login.setOnClickListener {
             dialog2.cancel()
         }
         dialog2.show()
@@ -229,12 +272,14 @@ class HomaActivity : AppCompatActivity(),
             setCancelable(true)
             getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             setContentView(R.layout.dialog_jenis)
+            close_login_p.close(this)
                     umum.text = "Facebook"
                     umkm.text = "Twitter"
                     umum.setOnClickListener {
                         showDialogPilihan(1)
                     }
 
+            status.text = if(appPreferences.jenis.equals("umum")) "corporate" else appPreferences.jenis
                     umkm.setOnClickListener {
                         showDialogPilihan(2)
                     }
@@ -252,6 +297,9 @@ class HomaActivity : AppCompatActivity(),
             setCancelable(true)
             getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             setContentView(R.layout.dialog_jenis)
+
+            close_login_p.close(this)
+            dialog.status.text = if(appPreferences.jenis.equals("umum")) "corporate" else appPreferences.jenis
             when(mode){
                 1 -> {
                     val type = "facebook"
